@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 在 <head> 中添加 DataTables 的 CSS 和 JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+
+    <title>每日更新的表格</title>
+    <style>
+        table.data {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        table.data th, table.data td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        table.data th {
+            background-color: #f2f2f2;
+        }
+
+        /* 固定表头 */
+        table.data {
+            border-collapse: collapse;
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        table.data th {
+            position: sticky;
+            top: 0;
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        /* 限制第二列超链接的宽度 */
+        table.data td:nth-child(2) {
+            max-width: 400px;  /* 根据需要调整宽度 */
+            overflow-wrap: break-word;  /* 自动换行 */
+        }
+
+    </style>
+</head>
+<body>
+    <h1>每日更新的表格</h1>
+    <div>
+        {{ tables|safe }}
+    </div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function() {
+        $('table.data').DataTable({
+            "paging": true,
+            "searching": true,
+            "ordering": true
+        });
+    });
+</script>
+
